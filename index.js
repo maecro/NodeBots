@@ -92,6 +92,8 @@ function handleKeyboardInput(key) {
         } else {
           clearInterval(blinker);
           blinker = null;
+          strip.color("#000");
+          strip.show();
         }
         break;
       case "space":
