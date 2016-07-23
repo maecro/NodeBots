@@ -11,10 +11,11 @@ var max_speed_r = 140;
 var l_motor;
 var r_motor;
 var preventStuff = false;
+var piezo;
 
 board.on("ready", function () {
 
-  var piezo = new five.Piezo(8);
+  piezo = new five.Piezo(8);
 
   var proximity = new five.Proximity({
     freq: 1000,
@@ -65,6 +66,7 @@ function handleKeyboardInput(key) {
         break;
       case "h":
 	piezo.frequency(587, 1000);
+	break;
       case "space":
         preventStuff = true;
         stop();
