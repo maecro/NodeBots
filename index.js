@@ -3,11 +3,11 @@
 // the pin for appropriate port and the second pin within it.
 
 var five = require("johnny-five");
-var board = new five.Board();
+var board = new five.Board({ port: process.argv[2] });
 var max_speed_l = 150;
 var max_speed_r = 140;
 var l_motor;
-var r_motor
+var r_motor;
 var preventStuff = false;
 
 board.on("ready", function () {
