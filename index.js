@@ -26,7 +26,7 @@ board.on("ready", function () {
     controller: "FIRMATA",
   });
 
- 
+
 
   piezo = new five.Piezo(8);
 
@@ -35,7 +35,7 @@ board.on("ready", function () {
     freq: 500 // change this to speed you want data reported at. Slower is better
   });
 
-  sensor.on("data", function() {
+  sensor.on("data", function () {
     console.log("light: " + this.value);
   });
 
