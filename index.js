@@ -65,8 +65,8 @@ function handleKeyboardInput(key) {
         right();
         break;
       case "h":
-	piezo.frequency(587, 1000);
-	break;
+        piezo.frequency(587, 1000);
+        break;
       case "space":
         preventStuff = true;
         stop();
@@ -74,6 +74,10 @@ function handleKeyboardInput(key) {
     }
   }
 
+}
+
+function flashLights() {
+  // TODO: Implement
 }
 
 function stop() {
