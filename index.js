@@ -26,9 +26,7 @@ board.on("ready", function () {
     controller: "FIRMATA",
   });
 
-  var colors = ["#440000", "#000044"];
-  var current_colors = [0, 1];
-  var current_pos = [0, 1];
+ 
 
   piezo = new five.Piezo(8);
 
@@ -136,6 +134,9 @@ function reverse() {
 
 function soundHornLight() {
   piezo.frequency(587, 1000);
+  var colors = ["#440000", "#000044"];
+  var current_colors = [0, 1];
+  var current_pos = [0, 1];
   return setInterval(function () {
 
     strip.color("#000"); // blanks it out
