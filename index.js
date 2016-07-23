@@ -6,6 +6,8 @@ var five = require("johnny-five");
 var board = new five.Board();
 var max_speed_l = 150;
 var max_speed_r = 140;
+var l_motor;
+var r_motor
 
 board.on("ready", function () {
 
@@ -15,8 +17,8 @@ board.on("ready", function () {
     pin: 10
   });
 
-  var l_motor = new five.Motor({ pins: { pwm: 6, dir: 7 } });
-  var r_motor = new five.Motor({ pins: { pwm: 5, dir: 4 } });
+  l_motor = new five.Motor({ pins: { pwm: 6, dir: 7 } });
+  r_motor = new five.Motor({ pins: { pwm: 5, dir: 4 } });
 
   proximity.on("data", function () {
 
