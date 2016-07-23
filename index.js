@@ -8,6 +8,7 @@ var max_speed_l = 150;
 var max_speed_r = 140;
 var l_motor;
 var r_motor
+var preventStuff = false;
 
 board.on("ready", function () {
 
@@ -20,27 +21,73 @@ board.on("ready", function () {
   l_motor = new five.Motor({ pins: { pwm: 6, dir: 7 } });
   r_motor = new five.Motor({ pins: { pwm: 5, dir: 4 } });
 
+  stdin.on('keypress', function (chunk, key) {
+    preventStuff = true;
+    handleKeyboardInput(key);
+    preventStuff = false;
+  });
+
   proximity.on("data", function () {
 
     console.log(this.cm);
+
+    if (preventStuff) return;
 
     if (this.cm > 30) {
       l_motor.reverse(max_speed_l);
       r_motor.forward(max_speed_r);
     } else {
-      turnRight();
+      right();
     }
 
   });
 });
 
+function handleKeyboardInput(key) {
 
-function turnRight() {
+  if (key) {
+    switch (key.name) {
+      case "up":
+        foward();
+        break;
+      case "down":
+        reverse();
+        break;
+      case "left":
+        left();
+        break;
+      case "right":
+        right();
+        break;
+      case "space":
+        stop();
+        break;
+    }
+  }
+
+}
+
+function stop() {
+  l_motor.stop();
+  r_motor.stop();
+}
+
+function right() {
   r_motor.reverse(max_speed_r);
   l_motor.reverse(max_speed_l);
 }
 
-function turnLeft() {
+function left() {
   l_motor.forward(max_speed_l);
   r_motor.forward(max_speed_r);
+}
+
+function forward() {
+  l_motor.reverse(max_speed_l);
+  r_motor.forward(max_speed_r);
+}
+
+function reverse() {
+  r_motor.reverse(max_speed_r);
+  l_motor.forward(max_speed_l);
 }
