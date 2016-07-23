@@ -17,6 +17,15 @@ board.on("ready", function () {
 
   piezo = new five.Piezo(8);
 
+  var sensor = new five.Sensor({
+    pin: "A6",
+    freq: 500 // change this to speed you want data reported at. Slower is better
+  });
+
+  sensor.on("data", function() {
+    console.log("light: " + this.value);
+  });
+
   var proximity = new five.Proximity({
     freq: 1000,
     controller: "HCSR04",
@@ -32,7 +41,7 @@ board.on("ready", function () {
 
   proximity.on("data", function () {
 
-    console.log(this.cm);
+    console.log("distance (cm):" + this.cm);
 
     if (preventStuff) return;
 
