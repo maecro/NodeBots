@@ -52,7 +52,7 @@ function handleKeyboardInput(key) {
   if (key) {
     switch (key.name) {
       case "up":
-        foward();
+        forward();
         break;
       case "down":
         reverse();
