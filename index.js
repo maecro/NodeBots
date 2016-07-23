@@ -19,10 +19,13 @@ board.on("ready", function () {
   var r_motor = new five.Motor({ pins: { pwm: 5, dir: 4 } });
 
   proximity.on("data", function () {
-
-    if (this.cm < 30) {
+	console.log(this.cm);
+    if (this.cm > 30) {
       l_motor.reverse(max_speed_l);
       r_motor.forward(max_speed_r);
+    } else {
+	l_motor.stop();
+	r_motor.stop();
     }
 
   });
