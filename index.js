@@ -5,7 +5,6 @@
 var five = require("johnny-five");
 var board = new five.Board({ port: process.argv[2] });
 var stdin = process.openStdin();
-// require('tty').setRawMode(true);
 
 var max_speed_l = 150;
 var max_speed_r = 140;
@@ -14,6 +13,8 @@ var r_motor;
 var preventStuff = false;
 
 board.on("ready", function () {
+
+  var piezo = new five.Piezo(8);
 
   var proximity = new five.Proximity({
     freq: 1000,
@@ -62,6 +63,8 @@ function handleKeyboardInput(key) {
       case "right":
         right();
         break;
+      case "h":
+	piezo.frequency(587, 1000);
       case "space":
         preventStuff = true;
         stop();
