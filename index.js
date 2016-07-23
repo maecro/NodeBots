@@ -25,9 +25,7 @@ board.on("ready", function () {
   r_motor = new five.Motor({ pins: { pwm: 5, dir: 4 } });
 
   stdin.on('keypress', function (chunk, key) {
-    preventStuff = true;
     handleKeyboardInput(key);
-    preventStuff = false;
   });
 
   proximity.on("data", function () {
@@ -63,6 +61,7 @@ function handleKeyboardInput(key) {
         right();
         break;
       case "space":
+        preventStuff = !preventStuff;
         stop();
         break;
     }
