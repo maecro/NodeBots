@@ -5,7 +5,7 @@
 var five = require("johnny-five");
 var board = new five.Board({ port: process.argv[2] });
 var stdin = process.openStdin();
-require('tty').setRawMode(true);
+// require('tty').setRawMode(true);
 
 var max_speed_l = 150;
 var max_speed_r = 140;
