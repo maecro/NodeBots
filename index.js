@@ -46,6 +46,8 @@ board.on("ready", function () {
 
 function handleKeyboardInput(key) {
 
+  preventStuff = false;
+
   if (key) {
     switch (key.name) {
       case "up":
@@ -61,7 +63,7 @@ function handleKeyboardInput(key) {
         right();
         break;
       case "space":
-        preventStuff = !preventStuff;
+        preventStuff = true;
         stop();
         break;
     }
